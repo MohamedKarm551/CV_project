@@ -22,6 +22,9 @@
         <div class="title">
           <img src='{{ asset("storage/images/".$cv->image) }}'  alt="photo" title="my photo" />
           @auth
+          {{-- أنا عامل تسجيل دخول ... طيب هل أنا ينفع أعدل على اي سي في وانا مسجل دخول .. لا طبعا لازم أكون صاحب ال أي دي اللي موجود في عنوان الصفحة  --}}
+          @if ($cv->user_id == Auth::user()->id)
+          {{-- مهم جدا جدا جدا كنت ناسيه  --}}
           <div class="btns">
             <a href="{{ url('/editCv/'.$cv->id) }}">
               <button class="btn primary">Edit CV</button>
@@ -30,6 +33,7 @@
               <button class="btn warning">Delete CV and Create Onther</button>
             </a>  
             </div>   
+            @endif
           @endauth
           
        

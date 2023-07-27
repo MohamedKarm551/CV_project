@@ -43,6 +43,10 @@ class CvController extends Controller
         $cv->education = $request->education;
         $cv->experience = $request->experience;
         $cv->skills = $request->skills;
+        $cv->facebook = $request->facebook;
+        $cv->youtube = $request->youtube;
+        $cv->twitter = $request->twitter;
+        $cv->linkedin = $request->linkedin;
         $cv->save();
         return redirect('/view/'.$cv->id);
 
@@ -75,6 +79,8 @@ class CvController extends Controller
     public function update(Request $request , $id){
     // $cv = Cv ::first();
     $cv = CV::find($id);
+    $user=$request->user();
+    $cv->user_id = $user->id;// to update with user_id
     $cv->name = $request->input('name');
     $cv->email = $request->input('email');
     $cv->phone = $request->input('phone');
@@ -84,11 +90,15 @@ class CvController extends Controller
         // dd($imagePath); die;
         $cv->image = $imagePath;
     }
-    $cv->address = $request->input('address');
-    $cv->about_me = $request->input('about_me');
-    $cv->education = $request->input('education');
-    $cv->experience = $request->input('experience');
-    $cv->skills = $request->input('skills');
+    $cv->address = $request->address;
+    $cv->about_me = $request->about_me;
+    $cv->education = $request->education;
+    $cv->experience = $request->experience;
+    $cv->skills = $request->skills;
+    $cv->facebook = $request->facebook;
+    $cv->youtube = $request->youtube;
+    $cv->twitter = $request->twitter;
+    $cv->linkedin = $request->linkedin;
     // $cv->save();
     $cv->update();
 
