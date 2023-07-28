@@ -20,7 +20,7 @@
     <header>
       <div class="container">
         <div class="title">
-          <img src='{{ asset("storage/images/".$cv->image) }}'  alt="photo" title="my photo" />
+          <img src='{{ asset("public/images/".$cv->image) }}'  alt="photo" title="my photo" />
           @auth
           {{-- أنا عامل تسجيل دخول ... طيب هل أنا ينفع أعدل على اي سي في وانا مسجل دخول .. لا طبعا لازم أكون صاحب ال أي دي اللي موجود في عنوان الصفحة  --}}
           @if ($cv->user_id == Auth::user()->id)
@@ -40,7 +40,7 @@
       <div class="main-tilte">
             <h1 class="ml3">{{ $cv->name }}</h1>
             <span>({{ $cv->name}})</span>
-            <h2 class="ml2">software Engineer</h2>
+            <h2 class="ml2">{{$cv->job_title}}</h2>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
             <ul>
@@ -231,7 +231,11 @@
           </div>
 
           <div class="details">
-          {{ $cv->education }}
+          <ul>
+            @foreach(explode(',', $cv->education) as $edu)
+              <li>{{ $edu }}</li>
+            @endforeach
+            </ul>
 
           </div>
         </div>
@@ -240,13 +244,16 @@
             <h2>Experience</h2>
           </div>
           <div class="details">
-          {{ $cv->experience }}
-
             <ul>
+              @foreach(explode(',', $cv->experience) as $exp)
+                <li>{{ $exp }}</li>
+              @endforeach
+              </ul>
+            {{-- <ul>
               <li>Soft Developer at <a href="#">link</a></li>
               <li>Programming Instructor at <a href="#">link</a></li>
               <li>Back Developer at <a href="#">link</a></li>
-            </ul>
+            </ul> --}}
           </div>
         </div>
         <div class="table">
@@ -255,13 +262,12 @@
           </div>
 
           <div class="details">
-          {{ $cv->skills }}
-
-            <ul>
-              <li>fast to learn new technology</li>
-              <li>fast to learn new technology</li>
-              <li>problem solving skills</li>
+          <ul>
+            @foreach(explode(',', $cv->skills) as $skill)
+              <li>{{ $skill }}</li>
+            @endforeach
             </ul>
+         
           </div>
         </div>
         <!--  -->

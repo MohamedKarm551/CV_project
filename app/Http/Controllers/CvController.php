@@ -23,10 +23,11 @@ class CvController extends Controller
     public function storeCv(Request $request ){
         $user=$request->user();
         // dd($user);
-        $cv = new CV();
+        $cv = new CV(); //from model
         $cv->user_id = $user->id;
         $cv->name = $request->name;
         $cv->email = $request->email;
+        $cv->job_title = $request->job_title;
         $cv->phone = $request->phone;
         // save image 
         if ($request->hasFile('image')) {
@@ -81,9 +82,10 @@ class CvController extends Controller
     $cv = CV::find($id);
     $user=$request->user();
     $cv->user_id = $user->id;// to update with user_id
-    $cv->name = $request->input('name');
-    $cv->email = $request->input('email');
-    $cv->phone = $request->input('phone');
+    $cv->name = $request->name;
+    $cv->job_title = $request->job_title;
+    $cv->email = $request->email;
+    $cv->phone = $request->phone;
     if ($request->hasFile('image')) {
         $image = $request->file('image');
         $imagePath = $image->store('public/images');
@@ -99,6 +101,7 @@ class CvController extends Controller
     $cv->youtube = $request->youtube;
     $cv->twitter = $request->twitter;
     $cv->linkedin = $request->linkedin;
+    $cv->github = $request->github;
     // $cv->save();
     $cv->update();
 

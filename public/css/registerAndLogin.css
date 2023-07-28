@@ -49,6 +49,40 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0062cc;
 }
+.btn {
+    line-height: 40px;
+    padding: 0 30px;
+    border-radius: 20px;
+    /* background: transparent; */
+    border: 1px solid #fff;
+    color: #222222;
+    display: inline-block;
+    font-weight: 500;
+    /* position: relative; */
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+  }
+  .btn:hover {
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  .primary{
+    background-color: #4CAF50;
+  
+  }
+  .warning{
+    background-color: red;
+  
+  }
+  .center{
+    text-align: center;
+    margin: 1% auto;
+    display: block;
+    width: 20%;
+  }
 .form-error {
     color: #dc3545;
     font-size: 14px;

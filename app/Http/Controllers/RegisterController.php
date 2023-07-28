@@ -16,6 +16,10 @@ class RegisterController extends Controller
         // return view('register');
         $request->merge(['password'=>Hash::make($request->password)]); //نسيت هذا السطر وكان في ايرور لاااازم الباسورد يدخل متهيش 
         // dd($request);
+        $request->validate([
+            "name"=>"min:3|max:40|required",
+            "email"=>"min:3|max:40|required|unique:users,email"
+        ]);
         DB::table("users")->insert($request->except("_token"));
         return view('login');
 

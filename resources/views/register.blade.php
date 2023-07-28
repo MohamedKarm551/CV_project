@@ -7,7 +7,7 @@
     <title>Register</title>
 </head>
 <body>
-<h1>Register</h1>
+<h1 class="center">Register</h1>
 
 <form method="POST" action="/storeUser">
     @csrf
@@ -42,6 +42,7 @@
 
     <button type="submit">Register</button>
 </form>
+<a href="{{url('login')}}" class="btn primary center">login</a>
 
 </body>
 </html>

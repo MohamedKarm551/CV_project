@@ -18,6 +18,10 @@
     <input type="text" class="form-control" id="name" name="name"  >
   </div>
   <div class="form-group">
+    <label for="name">job title:</label>
+    <input type="text" class="form-control" id="job_title" name="job_title"  >
+  </div>
+  <div class="form-group">
         <label for="image">Image</label>
         <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
     </div>
@@ -40,15 +44,21 @@
   <div class="form-group">
     <label for="education">Education:</label>
     <textarea class="form-control" id="education" name="education"> </textarea>
+    <small class="form-text text-muted">Enter comma-separated list of education as ( 
+      Soft Developer at <a href="#">link</a>
+       Programming Instructor at <a href="#">link</a> 
+      Back Developer at <a href="#">link</a> )</small>
   </div>
 
   <div class="form-group">
     <label for="experience">experience:</label>
     <textarea class="form-control" id="experience" name="experience"> </textarea>
+    <small class="form-text text-muted">Enter comma-separated list of experience as (experience one, experience two)</small>
   </div>
   <div class="form-group">
     <label for="skills">skills:</label>
     <textarea class="form-control" id="skills" name="skills"> </textarea>
+    <small class="form-text text-muted">Enter comma-separated list of skills as (skill one, skill two , skill three)</small>
   </div>
   <!-- social -->
   <div class="form-group">

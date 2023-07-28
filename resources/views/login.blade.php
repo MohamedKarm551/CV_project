@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1 class="center">Login</h1>
 
 <form method="POST" action="{{ url('loginRequest') }}">
     @csrf
@@ -29,6 +29,7 @@
 
     <button type="submit">Login</button>
 </form>
+<a href="{{url('register')}}" class="btn primary center">register</a>
 
 </body>
 </html>
