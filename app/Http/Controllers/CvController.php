@@ -36,8 +36,8 @@ class CvController extends Controller
         // Generate a unique file name for the image
         $fileName = time() . '_' . $image->getClientOriginalName();
         // Store the image file in the public disk
-        $image->storeAs('public/images', $fileName);
-        $cv->image = $fileName;        }
+        $path=$image->storeAs('images', $fileName ,'images');
+        $cv->image = $path;        }
         // end save image
         $cv->address = $request->address;
         $cv->about_me = $request->about_me;
@@ -48,6 +48,7 @@ class CvController extends Controller
         $cv->youtube = $request->youtube;
         $cv->twitter = $request->twitter;
         $cv->linkedin = $request->linkedin;
+        $cv->github = $request->github;
         $cv->save();
         return redirect('/view/'.$cv->id);
 
@@ -88,9 +89,11 @@ class CvController extends Controller
     $cv->phone = $request->phone;
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        $imagePath = $image->store('public/images');
+        // $imagePath = $image->store('public/images');
+        $fileName = time() . '_' . $image->getClientOriginalName();
+        $path=$image->storeAs('images', $fileName ,'images');
+        $cv->image = $path; 
         // dd($imagePath); die;
-        $cv->image = $imagePath;
     }
     $cv->address = $request->address;
     $cv->about_me = $request->about_me;
@@ -102,8 +105,8 @@ class CvController extends Controller
     $cv->twitter = $request->twitter;
     $cv->linkedin = $request->linkedin;
     $cv->github = $request->github;
-    // $cv->save();
-    $cv->update();
+    $cv->save();
+    // $cv->update();
 
      return redirect("/view/{$id}");
     //  echo "res"; 

@@ -20,7 +20,7 @@
     <header>
       <div class="container">
         <div class="title">
-          <img src='{{ asset("public/images/".$cv->image) }}'  alt="photo" title="my photo" />
+          <img src='{{ asset($cv->image) }}'  alt="photo" title="my photo" />
           @auth
           {{-- أنا عامل تسجيل دخول ... طيب هل أنا ينفع أعدل على اي سي في وانا مسجل دخول .. لا طبعا لازم أكون صاحب ال أي دي اللي موجود في عنوان الصفحة  --}}
           @if ($cv->user_id == Auth::user()->id)
