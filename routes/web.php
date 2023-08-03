@@ -20,7 +20,7 @@ Route::post('/storeUser',  [RegisterController::class, 'store']);
 Route::get ('/login',        [LoginController::class,'login'])->name("login");
 Route::post('/loginRequest', [LoginController::class,'loginRequest']);
 Route::get('/logout',        [LoginController::class,'logout']);
-// 
+// CRUD
 Route::get   ('/createCv',      [CvController::class,   'create']);
 Route::post  ('/storeCv',       [CvController::class,   'storeCv']);
 Route::get   ('/view/{id}',     [CvController::class,   'view']);

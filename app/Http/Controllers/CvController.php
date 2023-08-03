@@ -30,14 +30,29 @@ class CvController extends Controller
         $cv->job_title = $request->job_title;
         $cv->phone = $request->phone;
         // save image 
+            // if ($request->hasFile('image')) {
+            // $image = $request->file('image');
+            //     // Get the uploaded image file
+            // // Generate a unique file name for the image
+            // $fileName = time() . '_' . $image->getClientOriginalName();
+            // // Store the image file in the public disk
+            // $path=$image->storeAs('images', $fileName ,'images');
+            // $cv->image = $path;        }
         if ($request->hasFile('image')) {
-        $image = $request->file('image');
-            // Get the uploaded image file
-        // Generate a unique file name for the image
-        $fileName = time() . '_' . $image->getClientOriginalName();
-        // Store the image file in the public disk
-        $path=$image->storeAs('images', $fileName ,'images');
-        $cv->image = $path;        }
+            $image = $request->file('image');
+             // Get the uploaded image file
+            $extension = $image->getClientOriginalExtension();
+            $allowedExtensions = array("jpg", "jpeg", "png", "gif");
+            // I asked a friend in the field of security, and he said that it is necessary to check whether the uploaded image is or not, so as not to upload virus files or codes
+            if (in_array($extension, $allowedExtensions)) {
+                $fileName = time() . '_' . $image->getClientOriginalName();
+                $path=$image->storeAs('images', $fileName ,'images');
+                $cv->image = $path;
+            } else {
+                // The uploaded file is not an image file
+                return response()->json(['error' => 'Invalid file type. Only image files are allowed.'], 400);
+            }
+        }
         // end save image
         $cv->address = $request->address;
         $cv->about_me = $request->about_me;
@@ -87,14 +102,32 @@ class CvController extends Controller
     $cv->job_title = $request->job_title;
     $cv->email = $request->email;
     $cv->phone = $request->phone;
+    // 
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     // $imagePath = $image->store('public/images');
+        //     $fileName = time() . '_' . $image->getClientOriginalName();
+        //     $path=$image->storeAs('images', $fileName ,'images');
+        //     $cv->image = $path; 
+        //     // dd($imagePath); die;
+        // }
+    // ارفع الصورة الجديدة وتأكد انها صورة 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        // $imagePath = $image->store('public/images');
-        $fileName = time() . '_' . $image->getClientOriginalName();
-        $path=$image->storeAs('images', $fileName ,'images');
-        $cv->image = $path; 
-        // dd($imagePath); die;
+         // Get the uploaded image file
+        $extension = $image->getClientOriginalExtension(); //get Extension
+        $allowedExtensions = array("jpg", "jpeg", "png", "gif");
+        // I asked a friend in the field of security, and he said that it is necessary to check whether the uploaded image is or not, so as not to upload virus files or codes
+        if (in_array($extension, $allowedExtensions)) {
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $path=$image->storeAs('images', $fileName ,'images');
+            $cv->image = $path;
+        } else {
+            // The uploaded file is not an image file
+            return response()->json(['error' => 'Invalid file type. Only image files are allowed.'], 400);
+        }
     }
+    // 
     $cv->address = $request->address;
     $cv->about_me = $request->about_me;
     $cv->education = $request->education;

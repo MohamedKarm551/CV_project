@@ -18,12 +18,12 @@ class LoginController extends Controller
         //test the request with database and next 
         $credentials =  $request->only('email', 'password'); //only this from request
 
-    if (Auth::attempt($credentials)) { // test with database 
-    $userHasCV = DB::table('users')
-    ->join('cv', 'users.id', '=', 'cv.user_id')
-    ->where('users.id', Auth::user()->id)
-    ->exists();   //هل اليوزر ده له سي في مستجل من قبل ؟ 
-    if ($userHasCV) {
+        if (Auth::attempt($credentials)) { // test with database 
+        $userHasCV = DB::table('users')
+        ->join('cv', 'users.id', '=', 'cv.user_id')
+        ->where('users.id', Auth::user()->id)
+        ->exists();   //هل اليوزر ده له سي في مستجل من قبل ؟ 
+        if ($userHasCV) {
         // If a CV exists for the user, redirect them to view it.
         $cvId = DB::table('cv')
             ->where('user_id', Auth::user()->id)

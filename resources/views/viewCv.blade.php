@@ -272,10 +272,26 @@
         </div>
         <!--  -->
         @auth
+        <div class="row">
+
+        
           <a href="{{ url('/logout/') }}">
               <button class="btn warning">logout</button>
           </a>  
-         @endauth
+            {{-- أنا عامل تسجيل دخول ... طيب هل أنا ينفع أعدل على اي سي في وانا مسجل دخول .. لا طبعا لازم أكون صاحب ال أي دي اللي موجود في عنوان الصفحة  --}}
+            @if ($cv->user_id == Auth::user()->id)
+            {{-- مهم جدا جدا جدا كنت ناسيه  --}}
+            <div class="btns showInMediaQuery">
+              <a href="{{ url('/editCv/'.$cv->id) }}">
+                <button class="btn primary">Edit CV</button>
+              </a>  
+              <a href="{{ url('/deleteCv/'.$cv->id) }}">
+                <button class="btn warning">Delete CV and Create Onther</button>
+              </a>  
+              </div>   
+              @endif
+            </div>
+              @endauth
       <!--  -->
   </div>
 

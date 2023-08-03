@@ -24,7 +24,7 @@
   <div class="form-group">
     <label for="image">Image:</label>
     <input type="file" class="form-control-file" id="image" name="image">
-    <input type="hidden" class="form-control-file" value="">
+    <input type="hidden" class="form-control-file" value="{{ $cv->image }}">
 
   </div>
   <div class="form-group">
